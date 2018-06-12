@@ -34,14 +34,14 @@ function formatRepoSelection (repo) {
   return repo.full_name || repo.text;
 }
 
-$(".js-example-data-ajax").select2({
+$(".repo-ajax").select2({
   ajax: {
     url: "https://api.github.com/search/repositories",
     dataType: 'json',
     delay: 250,
     data: function (params) {
       return {
-        q: "user:" + params.term,
+        q: params.term + "in:name",
         page: params.page
       };
     },
@@ -63,13 +63,17 @@ $(".js-example-data-ajax").select2({
   templateSelection: formatRepoSelection
 });
 
-$(".js-example-data-ajax").on('select2:select', function (e) {
+$(".repo-ajax").on('select2:select', function (e) {
   var value = e.params.data;
+  console.log(value);
   $('#repo-list').empty();
+  $('#repo-name').empty();
   $('#all-issues').empty();
+  $('.repo-array').empty();
+  $('.repo-array').hide();
+  $('#repo-name').text(' for ' + value.name);
   $.get(value.url + "/issues?state=open", function(data, status){
     if (typeof data !== 'undefined' && data.length > 0) {
-      console.log(value);
       $('<a href="'+value.html_url+'/issues">All issues</a>').appendTo($('#all-issues'));
       $.each(data, function(i, issue) {
         var repoListTemplate = '<div class="media text-muted pt-3"><img src="'+issue.user.avatar_url+'" alt="" class="mr-2 rounded" style="width: 32px; height: 32px;"> \
@@ -80,12 +84,18 @@ $(".js-example-data-ajax").on('select2:select', function (e) {
         </div>  <span class="d-block"><a href="'+ issue.user.html_url+'" \ target="_blank">@'+issue.user.login+'</a></span> </div></div>';
         $(repoListTemplate).appendTo($('#repo-list'));
       });
+      $.get(value.url + "/labels", function(data, status){
+        if (typeof data !== 'undefined' && data.length > 0) {
+          $('.repo-array').show();
+          console.log(_.map(data, 'name'));
+          $(".repo-array").select2({
+            data: _.map(data, 'name'),
+            placeholder: 'Select an label'
+          });
+      }
+      });
     } else {
       $('<small>No issues found..</small>').appendTo($('#repo-list'));
     }
-  });
-  $.get(value.url + "/labels", function(data, status){
-    console.log(_.map(data, 'name'));
-    
   });
 });

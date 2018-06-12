@@ -4902,9 +4902,12 @@ input.select2-search__field {
 .select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button {
   -webkit-appearance:none
 }
+input[type="search"]:focus {
+  box-shadow:none;
+}
 .select2-dropdown {
   background-color:white;
-  border:1px solid #aaa;
+  border:1px solid #efe7e7;
   border-radius:4px;
   box-sizing:border-box;
   display:block;
@@ -4988,8 +4991,8 @@ input.select2-search__field {
 }
 .select2-container--default .select2-selection--single {
   background-color:#fff;
-  border:1px solid #aaa;
-  border-radius:4px
+  border:1px solid #efe7e7;
+  border-radius:4px;
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color:#444;
