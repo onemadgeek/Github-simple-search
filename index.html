@@ -1,54 +1,57 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Repobar - Repository search made easy</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Repobar - Repository search made easy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <body class="bg-light">
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand mr-auto mr-lg-0" href="#">Welcome to Repobar</a>
+  </nav>
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand mr-auto mr-lg-0" href="#">Welcome to Repobar</a>
-    </nav>
 
-
-    <main role="main" class="container">
-      <div class="d-flex align-items-center p-3 my-3 text-white-50 rounded box-shadow">
-        <select class="repo-ajax form-control"></select>
+  <main role="main" class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 rounded box-shadow">
+      <select class="repo-ajax form-control"></select>
+    </div>
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+      <div class="row">
+        <div class="col">
+          <h6>Open Issues
+            <span id="repo-name"></span>
+          </h6>
+        </div>
+        <div class="col">
+          <select class="repo-array form-control mt-2" style="display:none;"></select>
+        </div>
       </div>
-      <div class="my-3 p-3 bg-white rounded box-shadow">
-        <div class="row">
-            <div class="col">
-                <h6>Open Issues <span id="repo-name"></span></h6>
-            </div>
-          <div class="col">
-              <select class="repo-array form-control mt-2" style="display:none;"></select>
-          </div>
-        </div>
-        <div id="repo-list" class="border-top border-gray">
-          <small>No issues found..</small>
-        </div>
-  
-        <small class="d-block text-right mt-3" id="all-issues">
-          
-        </small>
+      <div id="repo-list" class="border-top border-gray">
+        <small>No issues found..</small>
       </div>
 
-    </main>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+      <small class="d-block text-right mt-3" id="all-issues">
+
+      </small>
+    </div>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
