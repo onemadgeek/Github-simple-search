@@ -49,7 +49,7 @@ $(".repo-ajax").select2({
     },
     cache: true
   },
-  placeholder: 'Search for a repository',
+  placeholder: 'Search for a repository or user',
   escapeMarkup: function (markup) {
     return markup;
   },
