@@ -70,7 +70,13 @@ $(".repo-ajax").on('select2:select', function (e) {
     if (typeof data !== 'undefined' && data.length > 0) {
       $('<a href="' + value.html_url + '/issues">All issues</a>').appendTo($('#all-issues'));
       $.each(data, function (i, issue) {
-        var repoListTemplate = '<div class="media text-muted pt-3"><img src="' + issue.user.avatar_url + '" alt="" class="mr-2 rounded" style="width: 32px; height: 32px;"> \
+        console.log(issue);
+        console.log(issue.labels);
+        var labels = _.join(_.map(issue.labels, function square(n) {
+          return n.name.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');
+        }), ' ');
+        console.log(labels);
+        var repoListTemplate = '<div class="media text-muted pt-3 '+labels+'"><img src="' + issue.user.avatar_url + '" alt="" class="mr-2 rounded" style="width: 32px; height: 32px;"> \
         <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray"> \
         <div class="d-flex justify-content-between align-items-center w-100"> \
         <strong class="text-gray-dark">' + issue.title + '</strong> \
@@ -82,8 +88,17 @@ $(".repo-ajax").on('select2:select', function (e) {
         if (typeof data !== 'undefined' && data.length > 0) {
           $('.repo-array').show();
           $(".repo-array").select2({
+            placeholder: 'Select an label',
+            allowClear: true,
             data: _.map(data, 'name'),
-            placeholder: 'Select an label'
+          });
+          $('.repo-array').val(null).trigger('change');
+          $(".repo-array").on('select2:select', function (e) {
+            $('#repo-list div.media').hide();
+            $('#repo-list div.media.'+e.params.data.text.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'')).show();
+          });
+          $(".repo-array").on('select2:unselect', function (e) {
+            $('#repo-list div.media').show();
           });
         }
       });
